@@ -16,8 +16,8 @@ interface Pack {
 }
 
 const PACKS: Pack[] = [
-  { id: 0, robux: 40, price: 29 },
-  { id: 7, robux: 80, price: 59 },
+  { id: 0, robux: 40, price: 80 },
+  { id: 7, robux: 80, price: 149 },
   { id: 1, robux: 400, price: 290, bonus: '+5% бонус' },
   { id: 2, robux: 800, price: 550, oldPrice: 620, bonus: '+10% бонус' },
   { id: 3, robux: 1700, price: 990, oldPrice: 1190, bonus: '+15% бонус', popular: true, badge: 'Хит продаж' },
