@@ -16,14 +16,14 @@ interface Pack {
 }
 
 const PACKS: Pack[] = [
-  { id: 0, robux: 40, price: 80 },
-  { id: 7, robux: 80, price: 149 },
-  { id: 1, robux: 400, price: 290, bonus: '+5% бонус' },
-  { id: 2, robux: 800, price: 890, bonus: '+10% бонус' },
-  { id: 3, robux: 1700, price: 1600, bonus: '+15% бонус', popular: true, badge: 'Хит продаж' },
-  { id: 4, robux: 4500, price: 3850, bonus: '+20% бонус' },
-  { id: 5, robux: 10000, price: 8040, bonus: '+25% бонус', badge: 'Выгодно' },
-  { id: 6, robux: 22500, price: 16090, bonus: '+30% бонус', badge: 'Максимум' },
+  { id: 0, robux: 40, price: 29 },
+  { id: 7, robux: 80, price: 59 },
+  { id: 1, robux: 400, price: 269, bonus: '+5% бонус' },
+  { id: 2, robux: 800, price: 529, bonus: '+10% бонус' },
+  { id: 3, robux: 1700, price: 1109, bonus: '+15% бонус', popular: true, badge: 'Хит продаж' },
+  { id: 4, robux: 4500, price: 2929, bonus: '+20% бонус' },
+  { id: 5, robux: 10000, price: 6499, bonus: '+25% бонус', badge: 'Выгодно' },
+  { id: 6, robux: 22500, price: 14629, bonus: '+30% бонус', badge: 'Максимум' },
 ];
 
 const NAV = [
