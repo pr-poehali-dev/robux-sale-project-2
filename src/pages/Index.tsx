@@ -19,11 +19,11 @@ const PACKS: Pack[] = [
   { id: 0, robux: 40, price: 80 },
   { id: 7, robux: 80, price: 149 },
   { id: 1, robux: 400, price: 290, bonus: '+5% бонус' },
-  { id: 2, robux: 800, price: 550, oldPrice: 620, bonus: '+10% бонус' },
-  { id: 3, robux: 1700, price: 990, oldPrice: 1190, bonus: '+15% бонус', popular: true, badge: 'Хит продаж' },
-  { id: 4, robux: 4500, price: 2390, oldPrice: 2890, bonus: '+20% бонус' },
-  { id: 5, robux: 10000, price: 4990, oldPrice: 5990, bonus: '+25% бонус', badge: 'Выгодно' },
-  { id: 6, robux: 22500, price: 9990, oldPrice: 12990, bonus: '+30% бонус', badge: 'Максимум' },
+  { id: 2, robux: 800, price: 770, bonus: '+10% бонус' },
+  { id: 3, robux: 1700, price: 1390, bonus: '+15% бонус', popular: true, badge: 'Хит продаж' },
+  { id: 4, robux: 4500, price: 3350, bonus: '+20% бонус' },
+  { id: 5, robux: 10000, price: 6990, bonus: '+25% бонус', badge: 'Выгодно' },
+  { id: 6, robux: 22500, price: 13990, bonus: '+30% бонус', badge: 'Максимум' },
 ];
 
 const NAV = [
