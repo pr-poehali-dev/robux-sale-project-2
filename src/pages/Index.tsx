@@ -292,6 +292,11 @@ function Index() {
             <div className="font-display text-2xl font-extrabold tracking-widest">{CARD_NUMBER}</div>
           </div>
 
+          <div className="mt-3 flex items-center gap-2 rounded-xl border border-accent/30 bg-accent/10 px-4 py-2.5 text-sm text-accent">
+            <Icon name="Info" size={16} />
+            Комиссия за перевод не входит в наши цены — её берёт твой банк
+          </div>
+
           <ul className="mt-6 space-y-3">
             {[
               'Выбери пакет и добавь в корзину',
