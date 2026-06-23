@@ -4,35 +4,35 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 240 60% 6%;
+    --foreground: 220 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 245 45% 11%;
+    --card-foreground: 220 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 245 45% 11%;
+    --popover-foreground: 220 40% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 220 100% 58%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 270 85% 62%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 245 35% 18%;
+    --muted-foreground: 230 25% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 280 90% 65%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 250 40% 22%;
+    --input: 250 40% 22%;
+    --ring: 220 100% 58%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -97,5 +97,64 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: "Rubik", sans-serif;
   }
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: "Montserrat", sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      120deg,
+      #4d7cff 0%,
+      #a855f7 50%,
+      #d946ef 100%
+    );
+  }
+  .glow-blue {
+    box-shadow: 0 0 40px -8px rgba(77, 124, 255, 0.6);
+  }
+  .glow-purple {
+    box-shadow: 0 0 40px -8px rgba(168, 85, 247, 0.6);
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(77, 124, 255, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(77, 124, 255, 0.07) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out both;
 }
