@@ -294,7 +294,7 @@ function Index() {
 
           <div className="mt-3 flex items-center gap-2 rounded-xl border border-accent/30 bg-accent/10 px-4 py-2.5 text-sm text-accent">
             <Icon name="Info" size={16} />
-            Комиссия за перевод не входит в наши цены — её берёт твой банк
+            Комиссия Roblox за Робаксы — не наша, мы за неё не отвечаем
           </div>
 
           <ul className="mt-6 space-y-3">
