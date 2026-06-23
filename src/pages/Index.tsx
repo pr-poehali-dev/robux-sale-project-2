@@ -40,9 +40,16 @@ const FEATURES = [
 
 const PAY_METHODS = ['CreditCard', 'Smartphone', 'Wallet', 'QrCode'];
 
+const CARD_NUMBER = '2202 2080 4828 9913';
+const CARD_BANK = 'Сбербанк';
+
 function Index() {
   const [cart, setCart] = useState<Pack[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
+  const [payOpen, setPayOpen] = useState(false);
+  const [nickname, setNickname] = useState('');
+  const [copied, setCopied] = useState(false);
+  const [paid, setPaid] = useState(false);
 
   const addToCart = (pack: Pack) => {
     setCart((prev) => [...prev, pack]);
@@ -53,6 +60,23 @@ function Index() {
 
   const total = cart.reduce((s, p) => s + p.price, 0);
   const totalRobux = cart.reduce((s, p) => s + p.robux, 0);
+
+  const openPayment = () => {
+    setCartOpen(false);
+    setPaid(false);
+    setPayOpen(true);
+  };
+
+  const copyCard = () => {
+    navigator.clipboard.writeText(CARD_NUMBER.replace(/\s/g, ''));
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const confirmPayment = () => {
+    setPaid(true);
+    setCart([]);
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -138,7 +162,7 @@ function Index() {
             </Button>
           </div>
           <div className="mt-10 flex gap-8">
-            {[['50K+', 'Покупателей'], ['4.9★', 'Рейтинг'], ['24/7', 'Поддержка']].map(([v, l]) => (
+            {[['24/7', 'Поддержка']].map(([v, l]) => (
               <div key={l}>
                 <div className="font-display text-2xl font-extrabold text-gradient">{v}</div>
                 <div className="text-sm text-muted-foreground">{l}</div>
@@ -366,13 +390,109 @@ function Index() {
                   <span>Итого</span>
                   <span className="text-gradient">{total} ₽</span>
                 </div>
-                <Button className="w-full bg-gradient-to-r from-primary to-secondary text-base font-semibold glow-blue hover:opacity-90">
+                <Button
+                  onClick={openPayment}
+                  className="w-full bg-gradient-to-r from-primary to-secondary text-base font-semibold glow-blue hover:opacity-90"
+                >
                   <Icon name="CreditCard" size={18} />
                   Перейти к оплате
                 </Button>
               </div>
             )}
           </aside>
+        </div>
+      )}
+
+      {/* Payment modal */}
+      {payOpen && (
+        <div className="fixed inset-0 z-[70] grid place-items-center p-4">
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setPayOpen(false)} />
+          <div className="relative w-full max-w-md animate-fade-up rounded-3xl border border-border bg-card p-6 shadow-2xl sm:p-8">
+            <button
+              onClick={() => setPayOpen(false)}
+              className="absolute right-4 top-4 rounded-lg p-2 text-muted-foreground hover:bg-muted"
+            >
+              <Icon name="X" size={20} />
+            </button>
+
+            {paid ? (
+              <div className="py-6 text-center">
+                <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-full bg-accent/20 text-accent glow-purple">
+                  <Icon name="CircleCheck" size={36} />
+                </div>
+                <h3 className="font-display text-2xl font-black">Спасибо за заказ!</h3>
+                <p className="mx-auto mt-3 max-w-xs text-sm text-muted-foreground">
+                  Мы проверим оплату и зачислим Робаксы на твой аккаунт в течение 5–15 минут.
+                  Статус подтвердим в поддержке.
+                </p>
+                <Button
+                  onClick={() => setPayOpen(false)}
+                  className="mt-6 w-full bg-gradient-to-r from-primary to-secondary font-semibold hover:opacity-90"
+                >
+                  Готово
+                </Button>
+              </div>
+            ) : (
+              <>
+                <h3 className="font-display text-2xl font-black">Оплата заказа</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Переведи точную сумму на карту {CARD_BANK} и подтверди оплату.
+                </p>
+
+                <div className="mt-5 rounded-2xl border border-border bg-background/60 p-4">
+                  <div className="flex items-center justify-between text-sm text-muted-foreground">
+                    <span>Сумма к оплате</span>
+                    <span className="font-display text-xl font-extrabold text-gradient">{total} ₽</span>
+                  </div>
+                  <div className="mt-1 flex items-center justify-between text-sm text-muted-foreground">
+                    <span>Робаксов</span>
+                    <span>{totalRobux.toLocaleString('ru-RU')}</span>
+                  </div>
+                </div>
+
+                <div className="mt-4 rounded-2xl border border-primary/40 bg-primary/10 p-4">
+                  <div className="mb-1 flex items-center gap-2 text-sm text-muted-foreground">
+                    <Icon name="CreditCard" size={16} />
+                    Карта {CARD_BANK}
+                  </div>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="font-display text-lg font-extrabold tracking-wider">{CARD_NUMBER}</span>
+                    <button
+                      onClick={copyCard}
+                      className="flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-sm font-semibold text-primary-foreground hover:opacity-90"
+                    >
+                      <Icon name={copied ? 'Check' : 'Copy'} size={15} />
+                      {copied ? 'Скопировано' : 'Копировать'}
+                    </button>
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <label className="mb-1.5 block text-sm font-medium text-muted-foreground">
+                    Ник в Roblox для зачисления
+                  </label>
+                  <input
+                    value={nickname}
+                    onChange={(e) => setNickname(e.target.value)}
+                    placeholder="Например: RobloxPlayer123"
+                    className="w-full rounded-xl border border-border bg-background/60 px-4 py-2.5 text-sm outline-none focus:border-primary"
+                  />
+                </div>
+
+                <Button
+                  onClick={confirmPayment}
+                  disabled={!nickname.trim()}
+                  className="mt-5 w-full bg-gradient-to-r from-primary to-secondary text-base font-semibold glow-blue hover:opacity-90 disabled:opacity-50"
+                >
+                  <Icon name="CircleCheck" size={18} />
+                  Я оплатил(а)
+                </Button>
+                <p className="mt-3 text-center text-xs text-muted-foreground">
+                  После перевода нажми кнопку — мы проверим оплату и зачислим Робаксы
+                </p>
+              </>
+            )}
+          </div>
         </div>
       )}
     </div>
