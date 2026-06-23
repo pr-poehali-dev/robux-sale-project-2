@@ -36,6 +36,7 @@ const FEATURES = [
   { icon: 'ShieldCheck', title: 'Безопасно', text: 'Защищённые платежи и гарантия возврата' },
   { icon: 'Gift', title: 'Бонусы', text: 'Чем больше пакет — тем выгоднее курс' },
   { icon: 'Headphones', title: 'Поддержка 24/7', text: 'Всегда на связи и поможем с заказом' },
+  { icon: 'Clock', title: 'Срок доставки', text: 'Геймпасс и Робаксы зачисляются до 5 дней' },
 ];
 
 
@@ -182,7 +183,7 @@ function Index() {
       </section>
 
       {/* Features */}
-      <section className="container grid gap-4 py-6 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="container grid gap-4 py-6 sm:grid-cols-2 lg:grid-cols-5">
         {FEATURES.map((f) => (
           <div
             key={f.title}
