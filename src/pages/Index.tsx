@@ -38,7 +38,7 @@ const FEATURES = [
   { icon: 'Headphones', title: 'Поддержка 24/7', text: 'Всегда на связи и поможем с заказом' },
 ];
 
-const PAY_METHODS = ['CreditCard', 'Smartphone', 'Wallet', 'QrCode'];
+
 
 const CARD_NUMBER = '2202 2080 4828 9913';
 const CARD_BANK = 'Сбербанк';
@@ -132,7 +132,7 @@ function Index() {
         <div className="animate-fade-up">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
             <Icon name="Sparkles" size={15} />
-            Лучший курс Робаксов 2025
+            Лучший курс Робаксов 2026
           </div>
           <h1 className="font-display text-4xl font-black leading-[1.05] sm:text-5xl lg:text-6xl">
             Покупай <span className="text-gradient">Робаксы</span><br />
@@ -268,37 +268,50 @@ function Index() {
 
       {/* Payment */}
       <section id="payment" className="container py-16">
-        <div className="grid items-center gap-10 rounded-3xl border border-border/60 bg-card/60 p-8 backdrop-blur md:grid-cols-2 md:p-12">
-          <div>
+        <div className="mx-auto max-w-lg rounded-3xl border border-primary/40 bg-card/70 p-8 backdrop-blur md:p-10">
+          <div className="mb-6 text-center">
+            <div className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-primary to-secondary glow-blue">
+              <Icon name="CreditCard" size={28} />
+            </div>
             <h2 className="font-display text-3xl font-black sm:text-4xl">
-              Оплата <span className="text-gradient">онлайн</span>
+              Оплата <span className="text-gradient">на карту</span>
             </h2>
-            <p className="mt-3 text-muted-foreground">
-              Принимаем карты, СБП, электронные кошельки и оплату по QR-коду.
-              Все платежи защищены, чек приходит на почту.
+            <p className="mt-2 text-sm text-muted-foreground">
+              Только перевод на карту Сбербанка — быстро и просто
             </p>
-            <ul className="mt-6 space-y-3">
-              {['Безопасное соединение и шифрование', 'Моментальное подтверждение', 'Возврат, если что-то пошло не так'].map((t) => (
-                <li key={t} className="flex items-center gap-3 text-sm">
-                  <Icon name="CircleCheck" size={18} className="text-accent" />
-                  {t}
-                </li>
-              ))}
-            </ul>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            {PAY_METHODS.map((m, i) => (
-              <div
-                key={m}
-                className="grid aspect-[3/2] place-items-center rounded-2xl border border-border/60 bg-background/60 text-primary transition-transform hover:scale-105"
-              >
-                <Icon name={m} size={40} />
-                <span className="mt-2 text-xs text-muted-foreground">
-                  {['Картой', 'СБП / Телефон', 'Кошелёк', 'QR-код'][i]}
+
+          <div className="rounded-2xl border border-primary/30 bg-primary/10 p-5">
+            <div className="mb-1 flex items-center gap-2 text-sm text-muted-foreground">
+              <Icon name="CreditCard" size={15} />
+              Карта Сбербанк
+            </div>
+            <div className="font-display text-2xl font-extrabold tracking-widest">{CARD_NUMBER}</div>
+          </div>
+
+          <ul className="mt-6 space-y-3">
+            {[
+              'Выбери пакет и добавь в корзину',
+              'Переведи точную сумму на карту выше',
+              'Нажми «Я оплатил(а)» и укажи ник в Roblox',
+              'Получи Робаксы за 5–15 минут',
+            ].map((t, i) => (
+              <li key={t} className="flex items-start gap-3 text-sm">
+                <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-gradient-to-br from-primary to-secondary text-xs font-bold">
+                  {i + 1}
                 </span>
-              </div>
+                {t}
+              </li>
             ))}
-          </div>
+          </ul>
+
+          <Button
+            onClick={() => document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' })}
+            className="mt-7 w-full bg-gradient-to-r from-primary to-secondary font-semibold hover:opacity-90"
+          >
+            <Icon name="Package" size={18} />
+            Выбрать пакет
+          </Button>
         </div>
       </section>
 
